@@ -68,6 +68,18 @@ The template's Commands section uses a simple convention the verifier can parse:
 
 `plugin.json` holds the version; Kit v0 is `0.1.0`. A git tag `v0.1.0` marks the release. CHANGELOG.md uses Keep a Changelog headings.
 
+### Confirmed plugin format (task 1.1, checked 2026-11-06)
+
+Checked against code.claude.com/docs/en/plugins-reference and /plugin-marketplaces:
+
+- `.claude-plugin/plugin.json`: only `name` is required; `version`, `description`, `author` avoid validator warnings. Components stay at the plugin root, not inside `.claude-plugin/`.
+- `.claude-plugin/marketplace.json`: requires `name`, `owner` and `plugins[]`; an entry needs `name` and `source`. `source: "./"` points at the repo root. Entry name must equal the manifest name.
+- The docs now prefer `skills/` over `commands/` for new plugins, so the setup command is `skills/setup/SKILL.md`, invoked as `/ai-sdlc-kit:setup`. This replaces `commands/setup.md` above.
+- Agents in `agents/*.md` are namespaced, so the verifier is `ai-sdlc-kit:verifier`.
+- `${CLAUDE_PLUGIN_ROOT}` is substituted in skill and agent Markdown bodies (not in Bash env).
+- A `CLAUDE.md` at the plugin root triggers a validator warning, so templates stay under `templates/`.
+- `claude plugin validate .` is the authoritative check; install with `claude plugin marketplace add ViHa0509/ai-sdlc-kit-petrus` then `claude plugin install ai-sdlc-kit@<marketplace-name>`.
+
 ## Risks / Trade-offs
 
 - [Claude Code plugin manifest format changes or differs from this design] -> Task 1.1 checks the current plugin documentation before writing manifests and adjusts file names to match; specs describe behavior, not file names.

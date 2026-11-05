@@ -1,0 +1,14 @@
+{
+  "name": "petrus-sdlc",
+  "description": "Petrus's AI-native SDLC tooling",
+  "owner": {
+    "name": "ViHa0509"
+  },
+  "plugins": [
+    {
+      "name": "ai-sdlc-kit",
+      "source": "./",
+      "description": "CLAUDE.md and REVIEW.md templates, a setup skill and a read-only verifier subagent"
+    }
+  ]
+}
