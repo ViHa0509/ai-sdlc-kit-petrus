@@ -27,6 +27,6 @@ None. The kit has no existing specs.
 
 ## Impact
 
-- New files in this repo: `templates/CLAUDE.md`, `templates/REVIEW.md`, `agents/verifier.md`, plugin manifest, `README.md`.
+- New files in this repo: `templates/CLAUDE.md`, `templates/REVIEW.md`, `agents/verifier.md`, a setup command that copies the templates into a product repo, plugin and marketplace manifests, `README.md`, `CHANGELOG.md`.
 - First consumer: LearningHub (`https://github.com/ViHa0509/LearningHub`), task 1.5 of `slice-1-import-and-map`.
 - No runtime dependencies; requires Claude Code with plugin support.
