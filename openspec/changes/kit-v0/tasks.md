@@ -21,13 +21,13 @@
 
 ## 5. Setup command and distribution (spec: kit-distribution)
 
-- [ ] 5.1 Write `skills/setup/SKILL.md` that copies missing templates from `${CLAUDE_PLUGIN_ROOT}/templates/` and reports created and skipped files, and verify on a scratch repo: first run creates both, second run skips both, a pre-existing CLAUDE.md is untouched
-- [ ] 5.2 Write `README.md` (what, install, setup, update, not yet included) and `CHANGELOG.md` with a `0.1.0` entry, and verify by following the README from scratch in a new empty repo
+- [x] 5.1 Write `skills/setup/SKILL.md` that copies missing templates from `${CLAUDE_PLUGIN_ROOT}/templates/` and reports created and skipped files, and verify on a scratch repo: first run creates both, second run skips both, a pre-existing CLAUDE.md is untouched
+- [x] 5.2 Write `README.md` (what, install, setup, update, not yet included) and `CHANGELOG.md` with a `0.1.0` entry, and verify by following the README from scratch in a new empty repo
 
 ## 6. Release and first use
 
-- [ ] 6.1 Install the plugin from `https://github.com/ViHa0509/ai-sdlc-kit-petrus` in a fresh Claude Code session and verify the setup command and verifier are available
-- [ ] 6.2 Tag `v0.1.0` and push the tag, and verify `git ls-remote --tags origin` shows it
+- [x] 6.1 Install the plugin from `https://github.com/ViHa0509/ai-sdlc-kit-petrus` in a fresh Claude Code session and verify the setup command and verifier are available
+- [x] 6.2 Tag `v0.1.0` and push the tag, and verify `git ls-remote --tags origin` shows it
 
 ## Workflow follow-up
 
