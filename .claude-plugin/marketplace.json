@@ -8,7 +8,7 @@
     {
       "name": "ai-sdlc-kit",
       "source": "./",
-      "description": "CLAUDE.md and REVIEW.md templates, a setup skill and a read-only verifier subagent"
+      "description": "CLAUDE.md and REVIEW.md templates, a setup skill, a verifier and an agent team with orchestrate and brainstorm skills"
     }
   ]
 }

@@ -2,6 +2,23 @@
 
 All notable changes to this kit. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow semantic versioning.
 
+## [0.2.0] - 2026-11-07
+
+### Added
+- `ai-sdlc-kit:implementer` (sonnet): implements one task from a change's `tasks.md`, runs the checks, never commits.
+- `ai-sdlc-kit:scout` (haiku): read-only fact finder with `file:line` answers.
+- `ai-sdlc-kit:qc-ui` (sonnet): runs the e2e command from CLAUDE.md `## UI`, inspects screenshots, returns a UI QC report.
+- `ai-sdlc-kit:brainstormer` (sonnet): appends 3 to 5 in-scope ideas to `ideas/BACKLOG.md`.
+- `/ai-sdlc-kit:orchestrate [change]`: one orchestration cycle with a model routing table, a 3-subagent cap, stop rules and a run log in `.sdlc/log.md`; works under `/loop`.
+- `/ai-sdlc-kit:brainstorm`: runs the brainstormer once; `/loop 12h` for periodic runs.
+- `templates/VISION.md`, copied by setup to `docs/VISION.md`.
+- `templates/CLAUDE.md`: new `## UI` and `## Agent team` sections.
+
+### Changed
+- `ai-sdlc-kit:verifier` now pins `model: sonnet`.
+- `/ai-sdlc-kit:setup` also copies `docs/VISION.md` (never overwrites).
+- Existing repos: add the `UI` and `Agent team` sections to your CLAUDE.md by hand.
+
 ## [0.1.0] - 2026-11-06
 
 ### Added

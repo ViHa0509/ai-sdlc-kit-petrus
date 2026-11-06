@@ -21,6 +21,15 @@ Rows with `yes` in **Check?** are checks; the verifier runs every check and noth
 
 <!-- Write commands exactly as they are typed, with the folder to run them from if not the repo root. -->
 
+## UI
+
+<!-- Only if the product has a UI. qc-ui reads this section. Leave the e2e command empty if there is none. -->
+
+- App URL: <!-- http://localhost:5173 -->
+- E2E command: <!-- npm run e2e, run from the folder it needs; it must save screenshots -->
+- Screenshot folder: <!-- e2e/screenshots -->
+- Viewport: <!-- 1280x800 -->
+
 ## Layout
 
 <!-- Top-level folders and what lives in each, one line per folder. -->
@@ -37,6 +46,19 @@ Rows with `yes` in **Check?** are checks; the verifier runs every check and noth
 - A behavior the specs do not describe is new scope: update the change's artifacts first.
 - Before a PR, run the verifier subagent on the change and paste its report into the PR.
 - Never weaken or delete a test to make it pass.
+
+## Agent team
+
+<!-- Run by /ai-sdlc-kit:orchestrate. Edit the lines to match what this repo uses. -->
+
+- `scout` (haiku): read-only lookups with file:line answers.
+- `implementer` (sonnet): does one task from `tasks.md`, runs the checks.
+- `verifier` (sonnet): runs the checks and compares the change with its specs.
+- `qc-ui` (sonnet): runs the e2e command and inspects screenshots (needs `## UI`).
+- `brainstormer` (sonnet): adds in-scope ideas to `ideas/BACKLOG.md` (needs `docs/VISION.md`).
+- Opus or the main session: specs, design, security, migrations, blocked tasks, final review.
+- One cycle: `/ai-sdlc-kit:orchestrate [change]`. Loop it: `/loop 30m /ai-sdlc-kit:orchestrate`.
+- Ideas: `/loop 12h /ai-sdlc-kit:brainstorm`.
 
 ## Definition of done
 
