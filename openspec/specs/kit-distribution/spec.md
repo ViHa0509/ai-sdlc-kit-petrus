@@ -13,17 +13,17 @@ The kit repository SHALL be installable as a Claude Code plugin from its GitHub 
 - **THEN** the verifier subagent and the kit's setup command become available in that Claude Code session
 
 ### Requirement: Setup command writes templates into the product repo
-The plugin SHALL provide a setup command that copies the CLAUDE.md and REVIEW.md templates into the current repository root. It MUST NOT overwrite an existing file; it reports which files it created and which it skipped.
+The plugin SHALL provide a setup command that copies the CLAUDE.md and REVIEW.md templates into the current repository root and the VISION.md template to `docs/VISION.md`. It MUST NOT overwrite an existing file; it reports which files it created and which it skipped.
 
 #### Scenario: Fresh repo
-- **GIVEN** the repository has no CLAUDE.md and no REVIEW.md
+- **GIVEN** the repository has no CLAUDE.md, no REVIEW.md and no docs/VISION.md
 - **WHEN** the user runs the setup command
-- **THEN** both files are created from the templates and reported as created
+- **THEN** all three files are created from the templates and reported as created
 
 #### Scenario: Existing file
 - **GIVEN** the repository already has a CLAUDE.md
 - **WHEN** the user runs the setup command
-- **THEN** CLAUDE.md is left unchanged and reported as skipped, and REVIEW.md is created if missing
+- **THEN** CLAUDE.md is left unchanged and reported as skipped, and REVIEW.md and docs/VISION.md are created if missing
 
 ### Requirement: Semantic versioning with a changelog
 The kit SHALL use semantic versions in its plugin manifest, starting at `0.1.0` for Kit v0, and keep a CHANGELOG.md entry for every released version.
