@@ -85,3 +85,11 @@ The kit is planned and built with OpenSpec: see `openspec/changes/`. Validate be
 ```bash
 claude plugin validate .
 ```
+
+## Dev and QC loop
+
+The developers (`implementer`) build a change and keep its unit and API tests. `qc-e2e` then writes black-box e2e tests from the change's spec scenarios and runs the whole suite. Each product bug goes back to the implementer that owns the area, and `qc-e2e` runs again. The loop ends when the suite passes, or with `needs human` after 3 rounds that fail on the same scenario.
+
+```
+/loop run qc-e2e after the dev agents finish; send failures back to the dev agents; repeat until the tests pass
+```

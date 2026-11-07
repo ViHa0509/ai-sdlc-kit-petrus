@@ -2,6 +2,12 @@
 
 All notable changes to this kit. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow semantic versioning.
 
+## 0.3.0 - 2026-11-07
+
+### Added
+- `qc-e2e` agent (sonnet): writes black-box e2e tests from a change's spec scenarios, runs the suite, and reports product bugs with the scenario they break. It writes only in the e2e folder and never fixes product code.
+- Orchestration: a dev -> QC -> fix loop. See the README section "Dev and QC loop".
+
 ## [0.2.0] - 2026-11-07
 
 ### Added

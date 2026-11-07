@@ -1,7 +1,7 @@
 {
   "name": "ai-sdlc-kit",
   "displayName": "AI SDLC Kit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "AI-native SDLC kit: CLAUDE.md and REVIEW.md templates, a setup skill, a verifier and an agent team (implementer, scout, UI QC, brainstormer) with orchestrate and brainstorm skills",
   "author": {
     "name": "ViHa0509",
@@ -9,5 +9,11 @@
   },
   "repository": "https://github.com/ViHa0509/ai-sdlc-kit-petrus",
   "license": "MIT",
-  "keywords": ["sdlc", "openspec", "review", "verification", "agents"]
+  "keywords": [
+    "sdlc",
+    "openspec",
+    "review",
+    "verification",
+    "agents"
+  ]
 }

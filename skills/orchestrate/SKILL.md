@@ -11,14 +11,15 @@ You are the main session. Subagents cannot start other subagents, so you dispatc
 ## Steps
 
 1. **Read context.** Read `CLAUDE.md` at the repository root. Run `openspec list --json`.
-2. **Pick the change.** Use the argument if given. Otherwise use the only active change that has pending tasks. If several qualify, stop and ask which one. If none has pending tasks, go to step 9 with the result `idle`.
+2. **Pick the change.** Use the argument if given. Otherwise use the only active change that has pending tasks. If several qualify, stop and ask which one. If none has pending tasks, go to step 10 with the result `idle`.
 3. **Pick tasks.** Read `openspec/changes/<change>/tasks.md`. Take the next unchecked tasks, at most 3 at a time.
 4. **Route each task** with the table below. Write down the agent and model for each.
 5. **Dispatch.** Tasks that touch different files may run in parallel. Tasks that touch the same files run one after another. Never run more than 3 subagents at once. Give each implementer the change name and one task number.
-6. **Verify.** When the implementers are done, run the `verifier` on the change. If the change touches UI and CLAUDE.md has a `## UI` section, also run `qc-ui`.
-7. **Retry once.** If a verdict is fail, send the findings to an implementer once. Run the verdicts again. If it still fails, stop with `needs human` and commit nothing.
-8. **Commit.** Only when every check passes: review the diff against `REVIEW.md` yourself, then make one commit with a message naming the tasks, for example `Tasks 1.1, 1.2 of <change>: <short summary>`. Do not push.
-9. **Log.** Append an entry to `.sdlc/log.md` (create the folder and file if missing):
+6. **Test end to end.** When the change has user-visible scenarios and CLAUDE.md has an e2e command, run `qc-e2e` on the change. For each product bug it reports, send the bug to the implementer that owns the area, then run `qc-e2e` again. Repeat until it passes. Stop with `needs human` after 3 rounds that end with the same failing scenario.
+7. **Verify.** When the implementers are done, run the `verifier` on the change. If the change touches UI and CLAUDE.md has a `## UI` section, also run `qc-ui`.
+8. **Retry once.** If a verdict is fail, send the findings to an implementer once. Run the verdicts again. If it still fails, stop with `needs human` and commit nothing.
+9. **Commit.** Only when every check passes: review the diff against `REVIEW.md` yourself, then make one commit with a message naming the tasks, for example `Tasks 1.1, 1.2 of <change>: <short summary>`. Do not push.
+10. **Log.** Append an entry to `.sdlc/log.md` (create the folder and file if missing):
 
 ```
 ## <YYYY-MM-DD HH:MM> <change or none>
@@ -29,7 +30,7 @@ You are the main session. Subagents cannot start other subagents, so you dispatc
 - Needs human: <what, or none>
 ```
 
-10. **Report** the same facts in a few lines.
+11. **Report** the same facts in a few lines.
 
 ## Routing table
 
@@ -40,6 +41,7 @@ You are the main session. Subagents cannot start other subagents, so you dispatc
 | A task whose spec and design are clear | `implementer` | sonnet |
 | Check the change | `verifier` | sonnet |
 | Check the UI | `qc-ui` | sonnet |
+| Write and run e2e tests from the specs | `qc-e2e` | sonnet |
 | Write or change specs or design | main session | opus |
 | Task touching security, a data migration, or cross-cutting design | main session | opus |
 | Resolve a blocked implementer | main session | opus |
