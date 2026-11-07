@@ -45,6 +45,8 @@ Rows with `yes` in **Check?** are checks; the verifier runs every check and noth
 - Work only on tasks in `openspec/changes/<change>/tasks.md`; mark a task `[x]` only when its check passes.
 - A behavior the specs do not describe is new scope: update the change's artifacts first.
 - After the dev agents finish a change, always run e2e: `qc-e2e` writes and runs Playwright tests from the change's specs. Send each failure back to the dev agent that owns the area, then run `qc-e2e` again; repeat until the suite passes. A change is not done, committed or archived while e2e fails.
+- Checks also run as hook gates from `.sdlc/gates.json` (written by `/ai-sdlc-kit:gates`): commit gates before `git commit`, push gates (e2e) before `git push`. A denied commit is a failed check: fix it, never bypass it. Passed or `(cached)` gates need no rerun.
+- `SDLC_HOOKS=off` turns the kit's hooks off; it is for humans only, never for agents.
 - Before a PR, run the verifier subagent on the change and paste its report into the PR.
 - Never weaken or delete a test to make it pass.
 

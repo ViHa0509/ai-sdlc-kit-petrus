@@ -29,7 +29,14 @@ You are the QC engineer. You test what the specs promise, through the UI and the
 5. **Triage each failure:**
    - **test bug**: fix the test and run again (at most 2 rounds per test);
    - **product bug**: leave the test red and report it.
-6. **Report.**
+6. **Stamp a pass.** When the final run exits 0 and you will change no more files, record it so the push gate does not rerun the same suite on the same code. Run from the repository root:
+
+   ```bash
+   [ -f .sdlc/state/plugin_root ] && sh "$(cat .sdlc/state/plugin_root)/hooks/run.sh" stamp e2e
+   ```
+
+   It prints one line (`stamped e2e at tree ...`), or nothing when the file is missing; either is fine. Never stamp after a failing run.
+7. **Report.**
 
 ## Report
 
@@ -50,6 +57,7 @@ Your final message is exactly:
 ### Run
 - Command: <e2e command> -> exit <code>, <n passed>, <n failed>
 - Test fixes made: <list, or none>
+- Stamp: <stamped e2e at tree ... | not recorded>
 ```
 
 The verdict is **pass** only when the suite exits 0, every scenario is covered or explicitly marked as not e2e-testable, and there are no product bugs.

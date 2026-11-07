@@ -18,7 +18,7 @@ You are the main session. Subagents cannot start other subagents, so you dispatc
 6. **Test end to end.** This step is required. After the implementers finish, and before verifying or committing, run `qc-e2e` on the change whenever CLAUDE.md has an e2e command. If it has none, record `qc-e2e not run (no e2e command)` in the log. For each product bug it reports, send the bug to the implementer that owns the area, then run `qc-e2e` again. Repeat until it passes. Stop with `needs human` after 3 rounds that end with the same failing scenario.
 7. **Verify.** When the implementers are done, run the `verifier` on the change. If the change touches UI and CLAUDE.md has a `## UI` section, also run `qc-ui`.
 8. **Retry once.** If a verdict is fail, send the findings to an implementer once. Run the verdicts again. If it still fails, stop with `needs human` and commit nothing.
-9. **Commit.** Only when every check and the e2e suite pass: review the diff against `REVIEW.md` yourself, then make one commit with a message naming the tasks, for example `Tasks 1.1, 1.2 of <change>: <short summary>`. Do not push.
+9. **Commit.** Only when every check and the e2e suite pass: review the diff against `REVIEW.md` yourself, then make one commit with a message naming the tasks, for example `Tasks 1.1, 1.2 of <change>: <short summary>`. Do not push. When the repo has `.sdlc/gates.json`, the kit's hooks run the commit gates automatically before `git commit`: a denied commit is a failed check (go to step 8 with the gate summary); never bypass it with `--no-verify`, `SDLC_HOOKS=off` or by editing the gate config.
 10. **Log.** Append an entry to `.sdlc/log.md` (create the folder and file if missing):
 
 ```
@@ -31,6 +31,12 @@ You are the main session. Subagents cannot start other subagents, so you dispatc
 ```
 
 11. **Report** the same facts in a few lines.
+
+## Do not repeat work
+
+- The hooks print only failures and one `gates passed: ...` line. When a gate passed or is reported `(cached)` on the current code, do not run that suite again yourself.
+- `qc-e2e` stamps a passing e2e run; the push gate then skips the e2e suite while the code is unchanged. Do not rerun a passed e2e suite to "double-check".
+- The session starts with a short `ai-sdlc-kit state` summary (active change, last log entry, last gates). Use it instead of rediscovering state; read files only for what it does not say.
 
 ## Routing table
 

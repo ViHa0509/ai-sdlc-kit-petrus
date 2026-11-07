@@ -2,6 +2,23 @@
 
 All notable changes to this kit. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow semantic versioning.
 
+## 0.4.0 - 2026-11-07
+
+### Added
+- Hooks (`hooks/hooks.json`, `hooks/run.sh`, `hooks/sdlc_hooks.py`; Python 3 stdlib, fail open, `SDLC_HOOKS=off`):
+  - Secret guard on Write, Edit, MultiEdit and NotebookEdit, and on the staged diff before `git commit`; reasons name only the type and line.
+  - Command guard on Bash: force-push to main/master, `--no-verify`, staging or printing `.env` and key files.
+  - Quality gates from `.sdlc/gates.json` before `git commit` and `git push`, and an optional stop gate with a loop guard; only failures are printed (last 20 lines each).
+  - Tree-hash cache: passed gates are not rerun on unchanged code in the session; e2e stamps (`run.sh stamp e2e`, written by `qc-e2e`) let the push gate skip an already-passed suite.
+  - Compact SessionStart summary (at most 15 lines): active changes with task counts, last log entry, last gate results.
+  - `protected` path globs and optional `format` commands.
+- `/ai-sdlc-kit:gates`: writes `.sdlc/gates.json` from the CLAUDE.md Commands checks and git-ignores `.sdlc/state/`.
+- `tests/`: stdlib `unittest` suite for the hooks (`python -m unittest`).
+
+### Changed
+- `setup` also writes `.sdlc/gates.json`; `qc-e2e` stamps a passing run; `orchestrate` treats a denied commit as a failed check and does not rerun passed suites.
+- `templates/CLAUDE.md` Workflow: gates and `SDLC_HOOKS=off`. Existing repos: add the two lines by hand, run `/ai-sdlc-kit:gates`, git-ignore `.sdlc/state/`, and restart Claude Code.
+
 ## 0.3.1 - 2026-11-07
 
 - E2E is now a required step: `orchestrate` always runs `qc-e2e` after the implementers finish and loops dev fixes until the suite passes; the CLAUDE.md template adds the rule to Workflow and Definition of done, and lists `qc-e2e` in the agent team.

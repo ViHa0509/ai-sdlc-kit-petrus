@@ -1,8 +1,8 @@
 {
   "name": "ai-sdlc-kit",
   "displayName": "AI SDLC Kit",
-  "version": "0.3.1",
-  "description": "AI-native SDLC kit: CLAUDE.md and REVIEW.md templates, a setup skill, a verifier and an agent team (implementer, scout, UI QC, brainstormer) with orchestrate and brainstorm skills",
+  "version": "0.4.0",
+  "description": "AI-native SDLC kit: CLAUDE.md and REVIEW.md templates, a setup skill, a verifier, an agent team (implementer, scout, UI QC, e2e QC, brainstormer) with orchestrate and brainstorm skills, and hooks for secret guards and quality gates",
   "author": {
     "name": "ViHa0509",
     "url": "https://github.com/ViHa0509"
@@ -14,6 +14,8 @@
     "openspec",
     "review",
     "verification",
-    "agents"
+    "agents",
+    "hooks",
+    "quality-gates"
   ]
 }
