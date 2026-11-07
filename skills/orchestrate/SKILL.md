@@ -15,10 +15,10 @@ You are the main session. Subagents cannot start other subagents, so you dispatc
 3. **Pick tasks.** Read `openspec/changes/<change>/tasks.md`. Take the next unchecked tasks, at most 3 at a time.
 4. **Route each task** with the table below. Write down the agent and model for each.
 5. **Dispatch.** Tasks that touch different files may run in parallel. Tasks that touch the same files run one after another. Never run more than 3 subagents at once. Give each implementer the change name and one task number.
-6. **Test end to end.** When the change has user-visible scenarios and CLAUDE.md has an e2e command, run `qc-e2e` on the change. For each product bug it reports, send the bug to the implementer that owns the area, then run `qc-e2e` again. Repeat until it passes. Stop with `needs human` after 3 rounds that end with the same failing scenario.
+6. **Test end to end.** This step is required. After the implementers finish, and before verifying or committing, run `qc-e2e` on the change whenever CLAUDE.md has an e2e command. If it has none, record `qc-e2e not run (no e2e command)` in the log. For each product bug it reports, send the bug to the implementer that owns the area, then run `qc-e2e` again. Repeat until it passes. Stop with `needs human` after 3 rounds that end with the same failing scenario.
 7. **Verify.** When the implementers are done, run the `verifier` on the change. If the change touches UI and CLAUDE.md has a `## UI` section, also run `qc-ui`.
 8. **Retry once.** If a verdict is fail, send the findings to an implementer once. Run the verdicts again. If it still fails, stop with `needs human` and commit nothing.
-9. **Commit.** Only when every check passes: review the diff against `REVIEW.md` yourself, then make one commit with a message naming the tasks, for example `Tasks 1.1, 1.2 of <change>: <short summary>`. Do not push.
+9. **Commit.** Only when every check and the e2e suite pass: review the diff against `REVIEW.md` yourself, then make one commit with a message naming the tasks, for example `Tasks 1.1, 1.2 of <change>: <short summary>`. Do not push.
 10. **Log.** Append an entry to `.sdlc/log.md` (create the folder and file if missing):
 
 ```
@@ -26,7 +26,7 @@ You are the main session. Subagents cannot start other subagents, so you dispatc
 - Result: done | idle | needs human
 - Tasks: <numbers attempted>
 - Agents: <task> -> <agent> (<model>), one per line
-- Verdicts: verifier <pass|fail>, qc-ui <pass|fail|not run>
+- Verdicts: qc-e2e <pass|fail|not run> (rounds: N), verifier <pass|fail>, qc-ui <pass|fail|not run>
 - Needs human: <what, or none>
 ```
 

@@ -1,7 +1,7 @@
 {
   "name": "ai-sdlc-kit",
   "displayName": "AI SDLC Kit",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "AI-native SDLC kit: CLAUDE.md and REVIEW.md templates, a setup skill, a verifier and an agent team (implementer, scout, UI QC, brainstormer) with orchestrate and brainstorm skills",
   "author": {
     "name": "ViHa0509",

@@ -2,6 +2,10 @@
 
 All notable changes to this kit. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow semantic versioning.
 
+## 0.3.1 - 2026-11-07
+
+- E2E is now a required step: `orchestrate` always runs `qc-e2e` after the implementers finish and loops dev fixes until the suite passes; the CLAUDE.md template adds the rule to Workflow and Definition of done, and lists `qc-e2e` in the agent team.
+
 ## 0.3.0 - 2026-11-07
 
 ### Added

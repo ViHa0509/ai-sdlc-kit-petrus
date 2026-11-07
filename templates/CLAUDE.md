@@ -44,6 +44,7 @@ Rows with `yes` in **Check?** are checks; the verifier runs every check and noth
 - Every change starts as an OpenSpec change: `/opsx:propose` -> review -> `/opsx:apply`.
 - Work only on tasks in `openspec/changes/<change>/tasks.md`; mark a task `[x]` only when its check passes.
 - A behavior the specs do not describe is new scope: update the change's artifacts first.
+- After the dev agents finish a change, always run e2e: `qc-e2e` writes and runs Playwright tests from the change's specs. Send each failure back to the dev agent that owns the area, then run `qc-e2e` again; repeat until the suite passes. A change is not done, committed or archived while e2e fails.
 - Before a PR, run the verifier subagent on the change and paste its report into the PR.
 - Never weaken or delete a test to make it pass.
 
@@ -55,6 +56,7 @@ Rows with `yes` in **Check?** are checks; the verifier runs every check and noth
 - `implementer` (sonnet): does one task from `tasks.md`, runs the checks.
 - `verifier` (sonnet): runs the checks and compares the change with its specs.
 - `qc-ui` (sonnet): runs the e2e command and inspects screenshots (needs `## UI`).
+- `qc-e2e` (sonnet): writes black-box Playwright tests from the change's specs; runs after every dev round until the suite passes (needs an e2e command).
 - `brainstormer` (sonnet): adds in-scope ideas to `ideas/BACKLOG.md` (needs `docs/VISION.md`).
 - Opus or the main session: specs, design, security, migrations, blocked tasks, final review.
 - One cycle: `/ai-sdlc-kit:orchestrate [change]`. Loop it: `/loop 30m /ai-sdlc-kit:orchestrate`.
@@ -65,6 +67,7 @@ Rows with `yes` in **Check?** are checks; the verifier runs every check and noth
 - [ ] Every command marked as a check in Commands passes.
 - [ ] The tasks for this work are checked in the change's `tasks.md`.
 - [ ] Every spec scenario touched by this work has a test.
+- [ ] `qc-e2e` ran on the change after the last dev fix, and the e2e suite passes.
 - [ ] The verifier report is attached to the PR.
 
 ## Known mistakes
